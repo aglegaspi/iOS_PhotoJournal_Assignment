@@ -14,5 +14,4 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var photoName: UILabel!
     @IBOutlet weak var photoDate: UILabel!
     
-    
 }
