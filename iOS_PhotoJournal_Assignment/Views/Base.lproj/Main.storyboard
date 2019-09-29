@@ -28,7 +28,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="I9g-s9-2aR">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionCell" id="I9g-s9-2aR" customClass="CollectionViewCell" customModule="iOS_PhotoJournal_Assignment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="381"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -61,6 +61,11 @@
                                                 </pageControl>
                                             </subviews>
                                         </view>
+                                        <connections>
+                                            <outlet property="photoDate" destination="EmI-Ah-q5j" id="0Ty-0X-SBD"/>
+                                            <outlet property="photoName" destination="XHR-h2-wSu" id="zhR-6Y-Iyy"/>
+                                            <outlet property="photoView" destination="YwB-x3-3lq" id="q09-73-VvQ"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
