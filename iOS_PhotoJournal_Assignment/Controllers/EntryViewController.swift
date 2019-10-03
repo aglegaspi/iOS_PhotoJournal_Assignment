@@ -30,6 +30,8 @@ class EntryViewController: UIViewController {
         present(imagePickerViewController,animated: true, completion: nil)
     }
     
+    
+    
 }
 
 extension EntryViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
