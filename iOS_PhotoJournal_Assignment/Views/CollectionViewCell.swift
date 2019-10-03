@@ -8,10 +8,22 @@
 
 import UIKit
 
+protocol CollectionViewCellDelegate: AnyObject {
+    func actionSheet(tag: Int)
+}
+
 class CollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var optionsButton: UIButton!
     @IBOutlet weak var photoView: UIImageView!
     @IBOutlet weak var photoName: UILabel!
     @IBOutlet weak var photoDate: UILabel!
+    
+    weak var delegate: CollectionViewCellDelegate?
+    
+    @IBAction func optionsButtonPressed(_ sender: UIButton) {
+        
+        delegate?.actionSheet(tag: sender.tag)
+    }
     
 }

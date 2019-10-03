@@ -31,12 +31,6 @@ class ViewController: UIViewController {
 
     @IBAction func addImageButtonPress(_ sender: UIBarButtonItem) {
         
-        //let favorite = favorites[indexPath.row]
-        //let detailVC = storyboard?.instantiateViewController(withIdentifier: "AddNewPhoto") as! EntryViewController
-        //detailVC.photo = favorite
-        //self.navigationController?.show(detailVC, sender: Any?.self)
-        //pushViewController(detailVC,animated: true)
-        
         let modalViewController = storyboard?.instantiateViewController(withIdentifier: "AddNewPhoto") as! EntryViewController
         modalViewController.modalPresentationStyle = .currentContext
         present(modalViewController, animated: true, completion: nil)
@@ -67,15 +61,49 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = entriesCollectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CollectionViewCell
         let entry = entries[indexPath.item]
-        
+        cell.delegate = self
+        cell.optionsButton.tag = indexPath.item
         cell.photoDate.text = entry.date
         cell.photoName.text = entry.description
-        print(entry.description)
         cell.photoView.image = UIImage(data: entry.image)
         
         return cell
     }
     
     
+}
+
+extension ViewController: CollectionViewCellDelegate {
+    
+    func actionSheet(tag: Int) {
+        
+        let optionMenu = UIAlertController(title: "Options", message: "Choose Option", preferredStyle: .actionSheet)
+        
+        // DELETE
+        let delete = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+            
+            let entry = self.entries[tag]
+            print(entry)
+        }
+        
+        // EDIT
+        let edit = UIAlertAction(title: "Edit", style: .default) { (_) in
+            // edit functionality
+        }
+        
+        // SHARE
+        let share = UIAlertAction(title: "Share", style: .default) { (_) in
+            //activity view controller
+        }
+        
+        // CANCEL
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        optionMenu.addAction(delete)
+        optionMenu.addAction(edit)
+        optionMenu.addAction(share)
+        optionMenu.addAction(cancelAction)
+        self.present(optionMenu,animated: true,completion: nil)
+    }
 }
 

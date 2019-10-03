@@ -51,15 +51,21 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="CFX-Nj-wJx">
-                                                    <rect key="frame" x="355" y="276" width="39" height="37"/>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kqS-T4-8YJ">
+                                                    <rect key="frame" x="356" y="267" width="30" height="39"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="pageIndicatorTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="currentPageIndicatorTintColor" red="1" green="0.7840901415" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                </pageControl>
+                                                    <fontDescription key="fontDescription" type="system" weight="black" pointSize="22"/>
+                                                    <state key="normal" title="...">
+                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="optionsButtonPressed:" destination="I9g-s9-2aR" eventType="touchUpInside" id="E1c-a9-bPr"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <connections>
+                                            <outlet property="optionsButton" destination="kqS-T4-8YJ" id="QQV-i7-c8p"/>
                                             <outlet property="photoDate" destination="EmI-Ah-q5j" id="0Ty-0X-SBD"/>
                                             <outlet property="photoName" destination="XHR-h2-wSu" id="zhR-6Y-Iyy"/>
                                             <outlet property="photoView" destination="YwB-x3-3lq" id="q09-73-VvQ"/>
