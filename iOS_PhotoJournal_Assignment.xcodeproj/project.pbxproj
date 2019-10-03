@@ -15,6 +15,9 @@
 		EC572C1C234111C3002CC109 /* iOS_PhotoJournal_AssignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC572C1B234111C3002CC109 /* iOS_PhotoJournal_AssignmentTests.swift */; };
 		EC572C2723411AAF002CC109 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC572C2623411AAF002CC109 /* CollectionViewCell.swift */; };
 		EC572C2A23411C49002CC109 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC572C2923411C49002CC109 /* EntryViewController.swift */; };
+		EC78E4CC23468463001A7BAB /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC78E4CB23468463001A7BAB /* Entry.swift */; };
+		ECFA302323466663002D1820 /* PersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFA302223466663002D1820 /* PersistenceHelper.swift */; };
+		ECFA302D234682E8002D1820 /* EntryPersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFA302C234682E8002D1820 /* EntryPersistenceHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,9 @@
 		EC572C1D234111C3002CC109 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC572C2623411AAF002CC109 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		EC572C2923411C49002CC109 /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
+		EC78E4CB23468463001A7BAB /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		ECFA302223466663002D1820 /* PersistenceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceHelper.swift; sourceTree = "<group>"; };
+		ECFA302C234682E8002D1820 /* EntryPersistenceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPersistenceHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,12 +87,13 @@
 		EC572C05234111BE002CC109 /* iOS_PhotoJournal_Assignment */ = {
 			isa = PBXGroup;
 			children = (
-				EC572C06234111BE002CC109 /* AppDelegate.swift */,
+				ECFA302123466649002D1820 /* Supporting Files */,
 				EC572C2B23411C4F002CC109 /* Controllers */,
 				EC572C2823411AB5002CC109 /* Views */,
 				EC572C0D234111C3002CC109 /* Assets.xcassets */,
-				EC572C0F234111C3002CC109 /* LaunchScreen.storyboard */,
 				EC572C12234111C3002CC109 /* Info.plist */,
+				EC78E4CD23468477001A7BAB /* Models */,
+				ECFA302423466667002D1820 /* Persistence */,
 			);
 			path = iOS_PhotoJournal_Assignment;
 			sourceTree = "<group>";
@@ -116,6 +123,32 @@
 				EC572C2923411C49002CC109 /* EntryViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		EC78E4CD23468477001A7BAB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EC78E4CB23468463001A7BAB /* Entry.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		ECFA302123466649002D1820 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EC572C06234111BE002CC109 /* AppDelegate.swift */,
+				EC572C0F234111C3002CC109 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ECFA302423466667002D1820 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				ECFA302223466663002D1820 /* PersistenceHelper.swift */,
+				ECFA302C234682E8002D1820 /* EntryPersistenceHelper.swift */,
+			);
+			path = Persistence;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,9 +252,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC78E4CC23468463001A7BAB /* Entry.swift in Sources */,
 				EC572C09234111BE002CC109 /* ViewController.swift in Sources */,
 				EC572C2A23411C49002CC109 /* EntryViewController.swift in Sources */,
+				ECFA302D234682E8002D1820 /* EntryPersistenceHelper.swift in Sources */,
 				EC572C07234111BE002CC109 /* AppDelegate.swift in Sources */,
+				ECFA302323466663002D1820 /* PersistenceHelper.swift in Sources */,
 				EC572C2723411AAF002CC109 /* CollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
