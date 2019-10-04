@@ -23,4 +23,12 @@ struct EntryPersistenceHelper {
         return try persistenceHelper.getObjects()
     }
     
+    func deleteFavorite(withDescription: String) throws {
+        do {
+            let entries = try getEntries()
+            let newEntries = entries.filter { $0.description != withDescription}
+            try persistenceHelper.replace(elements: newEntries)
+        }
+    }
+    
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CollectionViewCellDelegate: AnyObject {
-    func actionSheet(tag: Int)
+    func actionSheet(tag: Int) // signature
 }
 
 class CollectionViewCell: UICollectionViewCell {

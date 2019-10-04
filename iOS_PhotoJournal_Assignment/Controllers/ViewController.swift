@@ -83,7 +83,13 @@ extension ViewController: CollectionViewCellDelegate {
         let delete = UIAlertAction(title: "Delete", style: .destructive) { (action) in
             
             let entry = self.entries[tag]
-            print(entry)
+            //self.entries.remove(at: tag)
+            
+            do {
+                try EntryPersistenceHelper.manager.deleteFavorite(withDescription: entry.description)
+            } catch {
+                print(error)
+            }
         }
         
         // EDIT
