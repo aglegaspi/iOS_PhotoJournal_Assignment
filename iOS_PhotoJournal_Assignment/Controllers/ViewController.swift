@@ -61,11 +61,13 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = entriesCollectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CollectionViewCell
         let entry = entries[indexPath.item]
+        
         cell.delegate = self
         cell.optionsButton.tag = indexPath.item
         cell.photoDate.text = entry.date
         cell.photoName.text = entry.description
         cell.photoView.image = UIImage(data: entry.image)
+        print(entry.id)
         
         return cell
     }
@@ -74,37 +76,53 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 }
 
 extension ViewController: CollectionViewCellDelegate {
-    
+
     func actionSheet(tag: Int) {
-        
+
         let optionMenu = UIAlertController(title: "Options", message: "Choose Option", preferredStyle: .actionSheet)
-        
+
         // DELETE
         let delete = UIAlertAction(title: "Delete", style: .destructive) { (action) in
-            
+
             let entry = self.entries[tag]
-            //self.entries.remove(at: tag)
-            
+            self.entries.remove(at: tag)
+
             do {
-                try EntryPersistenceHelper.manager.deleteFavorite(withDescription: entry.description)
+                try EntryPersistenceHelper.manager.deleteFavorite(withID: entry.id)
             } catch {
                 print(error)
             }
         }
-        
+
         // EDIT
         let edit = UIAlertAction(title: "Edit", style: .default) { (_) in
-            // edit functionality
+
+            let entry = self.entries[tag]
+            let currentIndex = tag
+
+            let entryViewController = self.storyboard?.instantiateViewController(withIdentifier: "AddNewPhoto") as! EntryViewController
+            entryViewController.modalPresentationStyle = .currentContext
+            entryViewController.entry = entry
+            entryViewController.currentIndex = currentIndex
+            self.present(entryViewController, animated: true, completion: nil)
+
+            //self.dismiss(animated: true, completion: nil)
         }
-        
+
         // SHARE
         let share = UIAlertAction(title: "Share", style: .default) { (_) in
             //activity view controller
+            let entry = self.entries[tag]
+            let image = UIImage(data: entry.image)
+            let imageToShare = [image!]
+            let ac = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+            self.present(ac, animated: true)
+            
         }
-        
+
         // CANCEL
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
+
         optionMenu.addAction(delete)
         optionMenu.addAction(edit)
         optionMenu.addAction(share)

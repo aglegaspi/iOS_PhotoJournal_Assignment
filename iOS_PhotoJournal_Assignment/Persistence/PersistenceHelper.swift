@@ -38,6 +38,13 @@ struct PersistenceHelper<T: Codable> {
         try serializedData.write(to: url, options: Data.WritingOptions.atomic)
     }
     
+    func update(updatedElement: T, index: Int) throws {
+        var elements = try getObjects()
+        elements[index] = updatedElement
+        let serializedData = try PropertyListEncoder().encode(elements)
+        try serializedData.write(to: url, options: Data.WritingOptions.atomic)
+    }
+    
     func replace(elements: [T]) throws {
       let serializedData = try PropertyListEncoder().encode(elements)
       try serializedData.write(to: url, options: Data.WritingOptions.atomic)

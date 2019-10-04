@@ -9,7 +9,9 @@
 import Foundation
 
 struct Entry: Codable {
+    let id: Int
     let image: Data
     let description: String
     let date: String
+
 }

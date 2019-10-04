@@ -10,6 +10,9 @@ import UIKit
 
 class EntryViewController: UIViewController {
     
+    var entry: Entry?
+    var currentIndex: Int?
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var descriptionTextField: UITextView!
     
@@ -25,6 +28,15 @@ class EntryViewController: UIViewController {
         super.viewDidLoad()
         descriptionTextField.delegate = self
         setupTextFieldUI()
+        
+        if let entry = entry {
+            descriptionTextField.text = entry.description
+            imageView.image = UIImage(data: entry.image)
+            
+        }
+        
+        //print(entry.id)
+        
     }
     
     
@@ -41,15 +53,16 @@ class EntryViewController: UIViewController {
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
         
-        guard let imageData = self.imageView.image?
-            .jpegData(compressionQuality: 0.5)
-            else { return }
         
-        let entry = Entry(image: imageData, description: descriptionText, date: getDate())
-        try?
-            EntryPersistenceHelper.manager.saveEntry(entry: entry)
+        if descriptionTextField != nil && imageView != nil {
+            update()
+            dismiss(animated: true)
+        } else {
+            save()
+            dismiss(animated: true)
+        }
         
-        dismiss(animated: true)
+        
     }
     
     private func setupTextFieldUI() {
@@ -58,7 +71,28 @@ class EntryViewController: UIViewController {
         descriptionTextField.layer.borderWidth = 1.0
     }
     
-    func getDate() -> String {
+    private func save() {
+        guard let imageData = self.imageView.image?
+            .jpegData(compressionQuality: 0.5)
+            else { return }
+    
+            let entry = Entry(id: getIDForEntry(), image: imageData, description: descriptionText, date: getDate())
+            try?
+                EntryPersistenceHelper.manager.saveEntry(entry: entry)
+    }
+    
+    private func update() {
+        
+        guard let imageData = self.imageView.image?
+                .jpegData(compressionQuality: 0.5)
+                else { return }
+        
+                let entry = Entry(id: getIDForEntry(), image: imageData, description: descriptionText, date: getDate())
+                try?
+                    EntryPersistenceHelper.manager.editEntry(editEntry: entry, index: currentIndex ?? 0)
+    }
+    
+    private func getDate() -> String {
         
         let date = Date()
         let formatter = DateFormatter()
@@ -67,6 +101,18 @@ class EntryViewController: UIViewController {
         print(output)
         return String(output)
         
+    }
+    
+    private func getIDForEntry() -> Int {
+        
+        do {
+            let entries = try EntryPersistenceHelper.manager.getEntries()
+            let max = entries.map{ $0.id }.max() ?? 0
+            return max + 1
+        } catch {
+            print(error)
+        }
+        return 1
     }
     
 }
