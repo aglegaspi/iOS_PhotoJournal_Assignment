@@ -18,6 +18,8 @@
 		EC78E4CC23468463001A7BAB /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC78E4CB23468463001A7BAB /* Entry.swift */; };
 		ECFA302323466663002D1820 /* PersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFA302223466663002D1820 /* PersistenceHelper.swift */; };
 		ECFA302D234682E8002D1820 /* EntryPersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFA302C234682E8002D1820 /* EntryPersistenceHelper.swift */; };
+		ECFA4AC2234ACAD2005582BA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFA4AC1234ACAD2005582BA /* SettingsViewController.swift */; };
+		ECFA4AC4234ACEE1005582BA /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFA4AC3234ACEE1005582BA /* UserDefaultsWrapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		EC78E4CB23468463001A7BAB /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		ECFA302223466663002D1820 /* PersistenceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceHelper.swift; sourceTree = "<group>"; };
 		ECFA302C234682E8002D1820 /* EntryPersistenceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPersistenceHelper.swift; sourceTree = "<group>"; };
+		ECFA4AC1234ACAD2005582BA /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		ECFA4AC3234ACEE1005582BA /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				EC572C08234111BE002CC109 /* ViewController.swift */,
+				ECFA4AC1234ACAD2005582BA /* SettingsViewController.swift */,
 				EC572C2923411C49002CC109 /* EntryViewController.swift */,
 			);
 			path = Controllers;
@@ -146,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				ECFA302223466663002D1820 /* PersistenceHelper.swift */,
+				ECFA4AC3234ACEE1005582BA /* UserDefaultsWrapper.swift */,
 				ECFA302C234682E8002D1820 /* EntryPersistenceHelper.swift */,
 			);
 			path = Persistence;
@@ -253,12 +259,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC78E4CC23468463001A7BAB /* Entry.swift in Sources */,
+				ECFA4AC4234ACEE1005582BA /* UserDefaultsWrapper.swift in Sources */,
 				EC572C09234111BE002CC109 /* ViewController.swift in Sources */,
 				EC572C2A23411C49002CC109 /* EntryViewController.swift in Sources */,
 				ECFA302D234682E8002D1820 /* EntryPersistenceHelper.swift in Sources */,
 				EC572C07234111BE002CC109 /* AppDelegate.swift in Sources */,
 				ECFA302323466663002D1820 /* PersistenceHelper.swift in Sources */,
 				EC572C2723411AAF002CC109 /* CollectionViewCell.swift in Sources */,
+				ECFA4AC2234ACAD2005582BA /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -103,7 +103,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="JQf-nL-8HS"/>
+                    <navigationItem key="navigationItem" id="JQf-nL-8HS">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" style="plain" id="ek4-sy-zXY">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Cug-aM-Gcq" userLabel="Settings">
+                                <rect key="frame" x="302" y="7" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Settings"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="entriesCollectionView" destination="8ha-sh-k62" id="EpY-DN-0G2"/>
                     </connections>
@@ -123,7 +131,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zgd-qg-RBd">
                                 <rect key="frame" x="34" y="338" width="360" height="269"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Omi-oW-V11">
                                 <rect key="frame" x="0.0" y="818" width="414" height="44"/>
@@ -175,6 +183,33 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iIj-97-SlL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1875.3623188405797" y="126.5625"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="XWB-OE-EUy">
+            <objects>
+                <viewController id="0IN-V3-H0f" userLabel="Settings View Controller" customClass="SettingsViewController" customModule="iOS_PhotoJournal_Assignment" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0UV-99-1dP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ug5-Fn-E3I">
+                                <rect key="frame" x="183" y="273" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="scrollSwitchPressed:" destination="0IN-V3-H0f" eventType="valueChanged" id="p5o-yH-Mey"/>
+                                </connections>
+                            </switch>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="vIt-d8-Ox4"/>
+                    </view>
+                    <connections>
+                        <outlet property="scrollSwitch" destination="ug5-Fn-E3I" id="bIM-tL-fvy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hE6-lE-RPG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2652" y="128"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MgN-VI-NU9">

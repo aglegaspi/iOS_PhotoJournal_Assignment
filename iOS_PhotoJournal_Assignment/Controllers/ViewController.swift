@@ -27,6 +27,7 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadEntries()
+        settings()
     }
 
     @IBAction func addImageButtonPress(_ sender: UIBarButtonItem) {
@@ -34,6 +35,10 @@ class ViewController: UIViewController {
         let modalViewController = storyboard?.instantiateViewController(withIdentifier: "AddNewPhoto") as! EntryViewController
         modalViewController.modalPresentationStyle = .currentContext
         present(modalViewController, animated: true, completion: nil)
+    }
+    
+    private func settings() {
+        // load Settings via User Defaults
     }
     
     private func configureCollectionView() {
