@@ -53,7 +53,6 @@ class EntryViewController: UIViewController {
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
         
-        
         if descriptionTextField != nil && imageView != nil {
             update()
             dismiss(animated: true)
@@ -61,7 +60,6 @@ class EntryViewController: UIViewController {
             save()
             dismiss(animated: true)
         }
-        
         
     }
     
