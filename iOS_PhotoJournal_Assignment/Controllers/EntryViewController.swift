@@ -32,11 +32,7 @@ class EntryViewController: UIViewController {
         if let entry = entry {
             descriptionTextField.text = entry.description
             imageView.image = UIImage(data: entry.image)
-            
         }
-        
-        //print(entry.id)
-        
     }
     
     
@@ -56,8 +52,10 @@ class EntryViewController: UIViewController {
         if descriptionTextField != nil && imageView != nil {
             update()
             dismiss(animated: true)
+            print("update")
         } else {
             save()
+            print("save")
             dismiss(animated: true)
         }
         
@@ -73,21 +71,27 @@ class EntryViewController: UIViewController {
         guard let imageData = self.imageView.image?
             .jpegData(compressionQuality: 0.5)
             else { return }
-    
-            let entry = Entry(id: getIDForEntry(), image: imageData, description: descriptionText, date: getDate())
-            try?
-                EntryPersistenceHelper.manager.saveEntry(entry: entry)
+        
+        let uuid = UUID().uuidString
+        print(uuid)
+        
+        let entry = Entry(id: uuid, image: imageData, description: descriptionText, date: getDate())
+        try?
+            EntryPersistenceHelper.manager.saveEntry(entry: entry)
+        print("saved")
     }
     
     private func update() {
         
         guard let imageData = self.imageView.image?
-                .jpegData(compressionQuality: 0.5)
-                else { return }
+            .jpegData(compressionQuality: 0.5)
+            else { return }
         
-                let entry = Entry(id: getIDForEntry(), image: imageData, description: descriptionText, date: getDate())
-                try?
-                    EntryPersistenceHelper.manager.editEntry(editEntry: entry, index: currentIndex ?? 0)
+        guard let id = entry?.id else { return }
+        
+        let entry = Entry(id: id, image: imageData, description: descriptionText, date: getDate())
+        try?
+            EntryPersistenceHelper.manager.editEntry(editEntry: entry, index: currentIndex ?? 0)
     }
     
     private func getDate() -> String {
@@ -99,18 +103,6 @@ class EntryViewController: UIViewController {
         print(output)
         return String(output)
         
-    }
-    
-    private func getIDForEntry() -> Int {
-        
-        do {
-            let entries = try EntryPersistenceHelper.manager.getEntries()
-            let max = entries.map{ $0.id }.max() ?? 0
-            return max + 1
-        } catch {
-            print(error)
-        }
-        return 1
     }
     
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var entriesCollectionView: UICollectionView!
     
     private var entries = [Entry]() {
@@ -22,14 +22,17 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         configureCollectionView()
         loadEntries()
+        configureScrollDirection()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadEntries()
-        settings()
+        configureScrollDirection()
+        entriesCollectionView.reloadData()
     }
-
+    
     @IBAction func addImageButtonPress(_ sender: UIBarButtonItem) {
         
         let modalViewController = storyboard?.instantiateViewController(withIdentifier: "AddNewPhoto") as! EntryViewController
@@ -37,8 +40,30 @@ class ViewController: UIViewController {
         present(modalViewController, animated: true, completion: nil)
     }
     
-    private func settings() {
-        // load Settings via User Defaults
+    
+    @IBAction func settingsPressed(_ sender: UIButton) {
+        print("pressed")
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let settingsViewController = storyboard.instantiateViewController(withIdentifier: "Settings") as! SettingsViewController
+        settingsViewController.modalPresentationStyle = .currentContext
+        present(settingsViewController, animated: true, completion: .none)
+    }
+    
+    
+    private func configureScrollDirection() {
+        let setScrollDirection = UserDefaultsWrapper.manager.getScrollSetting()
+        
+        if let layout = entriesCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            
+            switch setScrollDirection {
+            case true:
+                layout.scrollDirection = .horizontal
+            default:
+                layout.scrollDirection = .vertical
+            }
+            
+        }
     }
     
     private func configureCollectionView() {
@@ -81,39 +106,39 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 }
 
 extension ViewController: CollectionViewCellDelegate {
-
+    
     func actionSheet(tag: Int) {
-
+        
         let optionMenu = UIAlertController(title: "Options", message: "Choose Option", preferredStyle: .actionSheet)
-
+        
         // DELETE
         let delete = UIAlertAction(title: "Delete", style: .destructive) { (action) in
-
+            
             let entry = self.entries[tag]
             self.entries.remove(at: tag)
-
+            
             do {
                 try EntryPersistenceHelper.manager.deleteFavorite(withID: entry.id)
             } catch {
                 print(error)
             }
         }
-
+        
         // EDIT
         let edit = UIAlertAction(title: "Edit", style: .default) { (_) in
-
+            
             let entry = self.entries[tag]
             let currentIndex = tag
-
+            
             let entryViewController = self.storyboard?.instantiateViewController(withIdentifier: "AddNewPhoto") as! EntryViewController
             entryViewController.modalPresentationStyle = .currentContext
             entryViewController.entry = entry
             entryViewController.currentIndex = currentIndex
             self.present(entryViewController, animated: true, completion: nil)
-
+            
             //self.dismiss(animated: true, completion: nil)
         }
-
+        
         // SHARE
         let share = UIAlertAction(title: "Share", style: .default) { (_) in
             //activity view controller
@@ -124,10 +149,9 @@ extension ViewController: CollectionViewCellDelegate {
             self.present(ac, animated: true)
             
         }
-
+        
         // CANCEL
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-
         optionMenu.addAction(delete)
         optionMenu.addAction(edit)
         optionMenu.addAction(share)

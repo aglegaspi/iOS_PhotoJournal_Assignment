@@ -23,7 +23,7 @@ struct EntryPersistenceHelper {
         return try persistenceHelper.getObjects()
     }
     
-    func deleteFavorite(withID: Int) throws {
+    func deleteFavorite(withID: String) throws {
         do {
             let entries = try getEntries()
             let newEntries = entries.filter { $0.id != withID}
