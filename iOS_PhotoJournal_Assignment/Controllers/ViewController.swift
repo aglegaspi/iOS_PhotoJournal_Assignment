@@ -23,7 +23,7 @@ class ViewController: UIViewController {
         configureCollectionView()
         loadEntries()
         configureScrollDirection()
-        
+        darkModeSettings()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -31,6 +31,7 @@ class ViewController: UIViewController {
         loadEntries()
         configureScrollDirection()
         entriesCollectionView.reloadData()
+        darkModeSettings()
     }
     
     @IBAction func addImageButtonPress(_ sender: UIBarButtonItem) {
@@ -79,7 +80,16 @@ class ViewController: UIViewController {
         }
     }
     
-    
+    private func darkModeSettings() {
+        let mode = UserDefaultsWrapper.manager.getDarkModeSetting()
+        
+        switch mode {
+        case true:
+            self.view.backgroundColor = .black
+        default:
+            self.view.backgroundColor = .yellow
+        }
+    }
 }
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {

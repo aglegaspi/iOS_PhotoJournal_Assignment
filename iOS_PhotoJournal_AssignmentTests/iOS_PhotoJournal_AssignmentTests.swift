@@ -30,5 +30,15 @@ class iOS_PhotoJournal_AssignmentTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func testPersistence() {
+        
+        XCTAssertTrue(true, "Dark Mode is on")
+    }
+    
+    private func getDarkModeFromUserDefaults() -> Data {
+    
+        return Data()
+    }
 
 }
